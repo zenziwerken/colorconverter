@@ -1,0 +1,446 @@
+<html>
+<head>
+    <link rel="icon" type="image/svg+xml" href="%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M0 0h24v24H0z' stroke='none'/%3E%3Cpath fill='%23fff' d='M12 21a9 9 0 0 1 0-18c4.97 0 9 3.582 9 8 0 1.06-.474 2.078-1.318 2.828-.844.75-1.989 1.172-3.182 1.172H14a2 2 0 0 0-1 3.75A1.3 1.3 0 0 1 12 21'/%3E%3Cpath stroke='red' d='M7.5 10.5a1 1 0 1 0 2 0 1 1 0 1 0-2 0'/%3E%3Cpath stroke='%230f0' d='M11.5 7.5a1 1 0 1 0 2 0 1 1 0 1 0-2 0'/%3E%3Cpath stroke='%2300f' d='M15.5 10.5a1 1 0 1 0 2 0 1 1 0 1 0-2 0'/%3E%3C/svg%3E"/>
+    <title>HEX RGB &#8594; HEX CMYK</title>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;color converter&quot;,&quot;short_name&quot;:&quot;&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjIiPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIHN0cm9rZT0ibm9uZSIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xMiAyMWE5IDkgMCAwIDEgMC0xOGM0Ljk3IDAgOSAzLjU4MiA5IDggMCAxLjA2LS40NzQgMi4wNzgtMS4zMTggMi44MjgtLjg0NC43NS0xLjk4OSAxLjE3Mi0zLjE4MiAxLjE3MkgxNGEyIDIgMCAwIDAtMSAzLjc1QTEuMyAxLjMgMCAwIDEgMTIgMjEiLz48cGF0aCBzdHJva2U9InJlZCIgZD0iTTcuNSAxMC41YTEgMSAwIDEgMCAyIDAgMSAxIDAgMSAwLTIgMCIvPjxwYXRoIHN0cm9rZT0iIzBmMCIgZD0iTTExLjUgNy41YTEgMSAwIDEgMCAyIDAgMSAxIDAgMSAwLTIgMCIvPjxwYXRoIHN0cm9rZT0iIzAwZiIgZD0iTTE1LjUgMTAuNWExIDEgMCAxIDAgMiAwIDEgMSAwIDEgMC0yIDAiLz48L3N2Zz4&quot;,&quot;sizes&quot;:&quot;any&quot;,&quot;type&quot;:&quot;image/svg+xml&quot;}],&quot;theme_color&quot;:&quot;#000&quot;,&quot;background_color&quot;:&quot;#000&quot;,&quot;display&quot;:&quot;standalone&quot;}">
+
+    <style>
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: 100%;
+	font-display: swap;
+	src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v40/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2) format('woff2');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-stretch: 100%;
+    font-display: swap;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v40/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+body {
+	font-family: "Open Sans", "Arial", "Helvetica", sans-serif;
+    background-color: #F4F4F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    color: #333333;
+    font-size: 24px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin: 10px 0 0 0;
+}
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 360px;
+}
+
+.section {
+    padding: 10px 20px 10px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color .2s ease-in-out;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+}
+input#HEXCMYK, input#HEXRGB {
+    width: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' fill='%23eee' font-family='Open Sans' font-weight='700'%3E%23%3C/text%3E%3C/svg%3E");
+    background-position: -6px 1px;
+    background-repeat: no-repeat;
+    padding-left: 26px;
+    background-size: 40%;
+}
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+input[type="text"], input[type="button"] {
+   font-size: 1rem;
+   font-family: "Open Sans", sans-serif;    
+   transition: box-shadow .2s ease-in-out;
+}
+input:focus {
+    box-shadow: 0 0 0 3px rgba(0, 56, 115, 0.25);
+    outline: none;
+
+}
+input#R, input#G, input#B, input#C, input#M, input#Y, input#K {
+    background-size: 150%;
+    background-position: -8px 0px;
+    background-repeat: no-repeat; 
+    text-align: end;
+}
+input#C, input#M, input#Y, input#K {
+    background-size: 200%;
+}
+
+input#R {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' fill='%23eee' font-family='Open Sans' font-weight='700'%3ER%3C/text%3E%3C/svg%3E");
+}
+input#G {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' fill='%23eee' font-family='Open Sans' font-weight='700'%3EG%3C/text%3E%3C/svg%3E");
+}
+input#B {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' fill='%23eee' font-family='Open Sans' font-weight='700'%3EB%3C/text%3E%3C/svg%3E");
+}
+input#C {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' fill='%23eee' font-family='Open Sans' font-weight='700'%3EC%3C/text%3E%3C/svg%3E");
+}
+input#M {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' fill='%23eee' font-family='Open Sans' font-weight='700'%3EM%3C/text%3E%3C/svg%3E");
+}
+input#Y {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' fill='%23eee' font-family='Open Sans' font-weight='700'%3EY%3C/text%3E%3C/svg%3E");
+}
+input#K {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='10' y='20' fill='%23eee' font-family='Open Sans' font-weight='700'%3EK%3C/text%3E%3C/svg%3E");
+}
+input[type="button"] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #999;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: calc(100% - 40px);
+    margin: 20px 20px 10px;
+}
+
+input[type="button"]:hover {
+    background-color: #666;
+}
+
+#representation {
+    width: 100%;
+    height: 50px;
+    border-radius: 0 0 8px 8px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #fff 0%, #f9f9f9 40%, #eee 50%, #f9f9f9 60%, #fff 100%);
+    background-size: 400% 400%;
+    animation: placeholder-animation 2s infinite alternate-reverse;;
+}
+
+@keyframes placeholder-animation {
+    0% {   background-position: 0 }
+    100% { background-position: 100% }
+}
+
+.modified {
+    background-color: #eee;
+}
+    </style>
+</head>
+
+<body>
+   <div class="container">
+    <h1>Color Converter</h1>
+      <div class="section" id="hex_rgb">
+          <label>HEX RGB</label>
+          <input type="text" id="HEXRGB" value="000000">
+      </div>
+  
+      <div class="section" id="dec_rgb">
+          <label>DEC RGB</label>
+          <div class="input-group">
+              <input type="text" id="R" value="0" class="rgb">
+              <input type="text" id="G" value="0" class="rgb">
+              <input type="text" id="B" value="0" class="rgb">
+          </div>
+      </div>
+  
+      <div class="section" id="dec_cmyk">
+          <label>DEC CMYK</label>
+          <div class="input-group">
+              <input type="text" id="C" value="0" class="cmyk">
+              <input type="text" id="M" value="0" class="cmyk">
+              <input type="text" id="Y" value="0" class="cmyk">
+              <input type="text" id="K" value="100" class="cmyk">
+          </div>
+      </div>
+  
+      <div class="section" id="hex_cmyk">
+          <label>HEX CMYK</label>
+          <input type="text" id="HEXCMYK" value="00000000">
+      </div>
+  
+      <input type="button" value="calculate" onclick="calculate()">
+      <div id="representation"></div>
+  </div>
+  
+    <script>
+        document.querySelectorAll('input[type="text"]').forEach(input => {
+            input.addEventListener('input', function() {
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('modified');
+                });
+
+                const section = input.closest('.section');
+                if (section) {
+                    section.classList.add('modified');
+                }
+            });
+        });
+
+        window.addEventListener('keyup', function(event) {
+        if (event.keyCode === 13) {
+            calculate();
+        }
+        });
+//#00546600
+        function calculate() {
+            const modifiedSection = document.querySelector('.section.modified');
+
+            if (modifiedSection) {
+                const sectionId = modifiedSection.id;
+
+                switch (sectionId) {
+                    case 'hex_rgb':
+                        calculate_hexrgb_to_decrgb();
+                        calculate_decrgb_to_deccmyk();
+                        calculate_deccmyk_to_hexcmyk();
+                        break;
+                    case 'dec_rgb':
+                        calculate_decrgb_to_hexrgb();
+                        calculate_decrgb_to_deccmyk();
+                        calculate_deccmyk_to_hexcmyk();
+                        break;
+                    case 'dec_cmyk':
+                        calculate_deccmyk_to_decrgb();
+                        calculate_decrgb_to_hexrgb();
+                        calculate_deccmyk_to_hexcmyk();
+                        break;
+                    case 'hex_cmyk':
+                        calculate_hexcmyk_to_deccmyk();
+                        calculate_deccmyk_to_decrgb();
+                        calculate_decrgb_to_hexrgb();
+                        break;
+                    default:
+                        console.log("Keine Berechnung durchgeführt");
+                }
+            } 
+        }
+        function  set_representation(r,g,b,hex = null) {
+            var representation = document.getElementById('representation');
+            representation.style.animation = 'none';
+            representation.style.background = 'none';            
+            if (hex != null) {
+                representation.style.backgroundColor = hex;
+            } else {
+                representation.style.backgroundColor = "rgb(" + r + ',' + g + ',' + b + ')';
+            }
+        }
+        function calculate_hexcmyk_to_deccmyk() {
+         	var hexa = document.getElementById("HEXCMYK").value;
+             var chunks = [];
+             var tmp,i;
+
+             if ( hexa.length < 1) return;
+			
+            if (hexa.substr(0,1) == '#') {
+                hexa = hexa.substr(1);
+                document.getElementById("HEXCMYK").value = hexa;
+            }
+                
+            if ( hexa.length === 4) {
+                tmp = hexa.split("");
+                for (i = 0; i < 4; i++){
+                    chunks.push(parseInt(tmp[i]+""+tmp[i],16));
+                }
+            } else if (hexa.length === 8) {
+                tmp = hexa.match(/.{2}/g);
+                for (i = 0; i < 4; i++){
+                    chunks.push(parseInt(tmp[i],16));
+                }
+            } else {
+                alert("'"+hexa+"' is not a valid hex format");   
+                return;
+            }
+            
+            document.getElementById("HEXCMYK").value = hexa.toUpperCase();
+            document.getElementById("C").value = Math.round(chunks[0] / 255 * 100);
+            document.getElementById("M").value = Math.round(chunks[1] / 255 * 100);
+            document.getElementById("Y").value = Math.round(chunks[2] / 255 * 100);
+            document.getElementById("K").value = Math.round(chunks[3] / 255 * 100);
+        }
+
+        function calculate_deccmyk_to_decrgb() {
+            var c = document.getElementById("C").value;
+         	var m = document.getElementById("M").value;
+         	var y = document.getElementById("Y").value;
+         	var k = document.getElementById("K").value;
+         	if ( c == null || isNaN(c) || c == '' || c < 0) { c = 0; document.getElementById("C").value = 0;}
+         	if ( m == null || isNaN(m) || m == '' || m < 0) { m = 0; document.getElementById("M").value = 0;}
+         	if ( y == null || isNaN(y) || y == '' || y < 0) { y = 0; document.getElementById("Y").value = 0;}
+         	if ( k == null || isNaN(k) || k == '' || k < 0) { k = 0; document.getElementById("K").value = 0;}
+         	if ( c > 100) { c = 100; document.getElementById("C").value = 100;}
+         	if ( m > 100) { m = 100; document.getElementById("M").value = 100;}
+         	if ( y > 100) { m = 100; document.getElementById("Y").value = 100;}
+         	if ( k > 100) { k = 100; document.getElementById("K").value = 100;}
+            k = Math.min(k, 100);
+
+            computedR = 255 * (1 - c / 100) * (1 - k / 100);
+            computedG = 255 * (1 - m / 100) * (1 - k / 100);
+            computedB = 255 * (1 - y / 100) * (1 - k / 100);
+
+            set_representation(Math.round(computedR),Math.round(computedG),Math.round(computedB));
+
+            document.getElementById("R").value = Math.max(0, Math.round(computedR));
+         	document.getElementById("G").value = Math.max(0, Math.round(computedG));
+         	document.getElementById("B").value = Math.max(0, Math.round(computedB));
+        }
+
+        function calculate_decrgb_to_hexrgb() {
+            const r = parseInt(document.getElementById("R").value) || 0;
+            const g = parseInt(document.getElementById("G").value) || 0;
+            const b = parseInt(document.getElementById("B").value) || 0;
+
+            const hex = decimalToHexString(r) + decimalToHexString(g) + decimalToHexString(b);
+            document.getElementById("HEXRGB").value = hex;
+        }
+
+        function calculate_hexrgb_to_decrgb() {
+         	var hexa = document.getElementById("HEXRGB").value;
+            var chunks = [];
+            var tmp,i;
+			if ( hexa.length < 1) return;
+			
+         	if (hexa.substr(0,1) == '#') {
+         		hexa = hexa.substr(1);
+                document.getElementById("HEXRGB").value = hexa;
+            }
+
+             if ( hexa.length === 3) {
+                 tmp = hexa.split("");
+                 for (i = 0; i < 3; i++){
+                     chunks.push(parseInt(tmp[i]+""+tmp[i],16));
+                 }
+             } else if (hexa.length === 6) {
+                 tmp = hexa.match(/.{2}/g);
+                 for (i = 0; i < 3; i++){
+                     chunks.push(parseInt(tmp[i],16));
+                 }
+             } else {
+                 alert("'"+hexa+"' is not a valid hex format");   
+         		return;
+             }
+         
+         	document.getElementById("R").value = chunks[0];
+         	document.getElementById("G").value = chunks[1];
+         	document.getElementById("B").value = chunks[2];
+            document.getElementById("HEXRGB").value = hexa.toUpperCase();
+            set_representation(null, null, null, hexa);
+         }
+         
+         function calculate_decrgb_to_deccmyk() {
+            var computedC = 0;
+          var computedM = 0;
+          var computedY = 0;
+          var computedK = 0;
+         
+          var r = parseInt(document.getElementById("R").value); 
+          var g = parseInt(document.getElementById("G").value); 
+          var b = parseInt(document.getElementById("B").value); 
+         
+        if ( r == null || isNaN(r) || r == '' || r < 0) { r = 0; document.getElementById("R").value = 0;}
+        if ( g == null || isNaN(g) || g == '' || g < 0) { g = 0; document.getElementById("G").value = 0;}
+        if ( b == null || isNaN(b) || b == '' || b < 0) { b = 0; document.getElementById("B").value = 0;}
+
+        if ( r > 255) { r = 255; document.getElementById("R").value = 255;}
+        if ( g > 255) { g = 255; document.getElementById("G").value = 255;}
+        if ( b > 255) { b = 255; document.getElementById("B").value = 255;}
+        
+          computedC = 1 - (r/255);
+          computedM = 1 - (g/255);
+          computedY = 1 - (b/255);
+         
+          var minCMY = Math.min(computedC, Math.min(computedM,computedY));
+          computedC = (computedC - minCMY) / (1 - minCMY) ;
+          computedM = (computedM - minCMY) / (1 - minCMY) ;
+          computedY = (computedY - minCMY) / (1 - minCMY) ;
+          computedK = minCMY;
+         
+          if (r == 0 && g == 0 && b == 0) {
+           computedC = 0;
+           computedM = 0;
+           computedY = 0;
+           computedK = 1;
+          }
+
+         	document.getElementById("C").value = Math.round(computedC * 100);
+         	document.getElementById("M").value = Math.round(computedM * 100);
+         	document.getElementById("Y").value = Math.round(computedY * 100);
+         	document.getElementById("K").value = Math.round(computedK * 100);
+			
+            set_representation(document.getElementById("R").value,document.getElementById("G").value,document.getElementById("B").value);
+         }
+         
+         function calculate_deccmyk_to_hexcmyk() {
+         	var c = document.getElementById("C").value;
+         	var m = document.getElementById("M").value;
+         	var y = document.getElementById("Y").value;
+         	var k = document.getElementById("K").value;
+         	if ( c == null || isNaN(c) || c == '' || c < 0) { c = 0; document.getElementById("C").value = 0;}
+         	if ( m == null || isNaN(m) || m == '' || m < 0) { m = 0; document.getElementById("M").value = 0;}
+         	if ( y == null || isNaN(y) || y == '' || y < 0) { y = 0; document.getElementById("Y").value = 0;}
+         	if ( k == null || isNaN(k) || k == '' || k < 0) { k = 0; document.getElementById("K").value = 0;}
+         	if ( c > 100) { c = 100; document.getElementById("C").value = 100;}
+         	if ( m > 100) { m = 100; document.getElementById("M").value = 100;}
+         	if ( y > 100) { m = 100; document.getElementById("Y").value = 100;}
+         	if ( k > 100) { k = 100; document.getElementById("K").value = 100;}
+
+            k = Math.min(k, 100);
+         	document.getElementById("HEXCMYK").value  = String(decimalToHexString(Math.round(c / 100 * 255)));
+         	document.getElementById("HEXCMYK").value += String(decimalToHexString(Math.round(m / 100 * 255)));
+         	document.getElementById("HEXCMYK").value += String(decimalToHexString(Math.round(y / 100 * 255)));
+         	document.getElementById("HEXCMYK").value += String(decimalToHexString(Math.round(k / 100 * 255)));
+
+            computedR = 255 * (1 - c / 100) * (1 - k / 100);
+            computedG = 255 * (1 - m / 100) * (1 - k / 100);
+            computedB = 255 * (1 - y / 100) * (1 - k / 100);
+            
+            set_representation(Math.round(computedR),Math.round(computedG),Math.round(computedB));
+         }
+         
+         function decimalToHexString(number) {
+         	if (number < 0) number = 0xFFFFFFFF + number + 1;
+         	return number.toString(16).toUpperCase().padStart(2, '0');
+         }
+
+         function HexStringtodecimal(number) {
+         	return parseInt(number, 16);
+         }
+
+    </script>
+</body>
+
+</html>
