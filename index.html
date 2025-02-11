@@ -210,6 +210,9 @@ input[type="button"]:hover {
                 if (section) {
                     section.classList.add('modified');
                 }
+                input.addEventListener('blur', function() {
+                    calculate();
+                });
             });
         });
 
