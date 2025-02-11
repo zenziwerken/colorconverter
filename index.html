@@ -208,19 +208,19 @@
         <div class="section" id="dec_rgb">
             <label>DEC RGB</label>
             <div class="input-group">
-                <input type="text" id="R" value="0" class="rgb">
-                <input type="text" id="G" value="0" class="rgb">
-                <input type="text" id="B" value="0" class="rgb">
+                <input type="text" id="R" value="0" class="rgb" pattern="\d*" min="0" max="255">
+                <input type="text" id="G" value="0" class="rgb" pattern="\d*" min="0" max="255">
+                <input type="text" id="B" value="0" class="rgb" pattern="\d*" min="0" max="255">
             </div>
         </div>
 
         <div class="section" id="dec_cmyk">
             <label>DEC CMYK</label>
             <div class="input-group">
-                <input type="text" id="C" value="0" class="cmyk">
-                <input type="text" id="M" value="0" class="cmyk">
-                <input type="text" id="Y" value="0" class="cmyk">
-                <input type="text" id="K" value="100" class="cmyk">
+                <input type="text" id="C" value="0" class="cmyk"  pattern="\d*" min="0" max="100">
+                <input type="text" id="M" value="0" class="cmyk"  pattern="\d*" min="0" max="100">
+                <input type="text" id="Y" value="0" class="cmyk"  pattern="\d*" min="0" max="100">
+                <input type="text" id="K" value="100" class="cmyk"  pattern="\d*" min="0" max="100">
             </div>
         </div>
 
