@@ -6,4 +6,4 @@ Enter any value in one of the input fields and the corresponding other fields wi
 You can use this page online or you can download the html-file and use it offline.
 
 Try it life [here](https://zenziwerken.github.io/colorconverter/) or copy the html to your PC an use it offline.  
-Icon based on [tabler `palette`](https://tabler.io/icons/icon/palette).
+Icon based on [tabler "palette"](https://tabler.io/icons/icon/palette).
