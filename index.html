@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="icon" type="image/svg+xml"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath d='M0 0h24v24H0z' stroke='none'/%3E%3Cpath fill='%23fff' d='M12 21a9 9 0 0 1 0-18c4.97 0 9 3.582 9 8 0 1.06-.474 2.078-1.318 2.828-.844.75-1.989 1.172-3.182 1.172H14a2 2 0 0 0-1 3.75A1.3 1.3 0 0 1 12 21'/%3E%3Cpath stroke='red' d='M7.5 10.5a1 1 0 1 0 2 0 1 1 0 1 0-2 0'/%3E%3Cpath stroke='%230f0' d='M11.5 7.5a1 1 0 1 0 2 0 1 1 0 1 0-2 0'/%3E%3Cpath stroke='%2300f' d='M15.5 10.5a1 1 0 1 0 2 0 1 1 0 1 0-2 0'/%3E%3C/svg%3E" />
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M12.1 23.5h-.2C5.6 23.5.5 18.3.5 12S5.7.5 12 .5 23.5 5.2 23.5 11c0 1.8-.8 3.5-2.2 4.7-1.3 1.2-3 1.8-4.8 1.8h-1.3c1 1.4.9 3.4-.3 4.8-.7.8-1.7 1.2-2.8 1.2z' stroke-width='0' fill='%23fff'/%3E%3Cpath fill='%23fff' d='M12 21a9 9 0 0 1 0 -18c4.97 0 9 3.582 9 8c0 1.06 -.474 2.078 -1.318 2.828c-.844 .75 -1.989 1.172 -3.182 1.172h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25' /%3E%3Cpath stroke='%23f00' d='M8.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0' /%3E%3Cpath stroke='%230f0' d='M12.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0' /%3E%3Cpath stroke='%2300f' d='M16.5 10.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0' /%3E%3C/svg%3E" />
     <title>HEX RGB &#8594; HEX CMYK</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="height=device-height, initial-scale=1.0">
@@ -287,15 +287,15 @@
         <h1><span class="icon"></span> Color Converter <span id="infobtn">?</span></h1>
         <div class="section" id="hex_rgb">
             <label>HEX RGB</label>
-            <input type="text" id="HEXRGB" value="000000">
+            <input type="text" id="HEXRGB" value="FFFFFF">
         </div>
 
         <div class="section" id="dec_rgb">
             <label>DEC RGB</label>
             <div class="input-group">
-                <input type="number" id="R" value="0" class="rgb" pattern="[0-9]*" min="0" max="255" inputmode="decimal">
-                <input type="number" id="G" value="0" class="rgb" pattern="[0-9]*" min="0" max="255" inputmode="decimal">
-                <input type="number" id="B" value="0" class="rgb" pattern="[0-9]*" min="0" max="255" inputmode="decimal">
+                <input type="number" id="R" value="255" class="rgb" pattern="[0-9]*" min="0" max="255" inputmode="decimal">
+                <input type="number" id="G" value="255" class="rgb" pattern="[0-9]*" min="0" max="255" inputmode="decimal">
+                <input type="number" id="B" value="255" class="rgb" pattern="[0-9]*" min="0" max="255" inputmode="decimal">
             </div>
         </div>
 
@@ -305,13 +305,13 @@
                 <input type="number" id="C" value="0" class="cmyk" pattern="[0-9]*" min="0" max="100" inputmode="decimal">
                 <input type="number" id="M" value="0" class="cmyk" pattern="[0-9]*" min="0" max="100" inputmode="decimal">
                 <input type="number" id="Y" value="0" class="cmyk" pattern="[0-9]*" min="0" max="100" inputmode="decimal">
-                <input type="number" id="K" value="100" class="cmyk" pattern="[0-9]*" min="0" max="100" inputmode="decimal">
+                <input type="number" id="K" value="0" class="cmyk" pattern="[0-9]*" min="0" max="100" inputmode="decimal">
             </div>
         </div>
 
         <div class="section" id="hex_cmyk">
             <label>HEX CMYK</label>
-            <input type="text" id="HEXCMYK" value="000000FF">
+            <input type="text" id="HEXCMYK" value="00000000">
         </div>
 
         <input type="button" value="calculate" onclick="calculate()">
@@ -399,7 +399,7 @@
 
         function calculate_hexcmyk_to_deccmyk() {
             var hexa = document.getElementById("HEXCMYK").value;
-            var chunks = [];
+            var cmyk = [];
             var tmp, i;
 
             if (hexa.length < 1) return false;
@@ -411,25 +411,27 @@
 
             if (hexa.length === 4) {
                 tmp = hexa.split("");
+                hexa = '';
                 for (i = 0; i < 4; i++) {
-                    chunks.push(parseInt(tmp[i] + "" + tmp[i], 16));
+                    cmyk.push(parseInt(tmp[i] + "" + tmp[i], 16));
+                    hexa += tmp[i] + "" + tmp[i];
                 }
             } else if (hexa.length === 8) {
                 tmp = hexa.match(/.{2}/g);
                 for (i = 0; i < 4; i++) {
-                    chunks.push(parseInt(tmp[i], 16));
+                    cmyk.push(parseInt(tmp[i], 16));
                 }
             } else {
-                document.getElementById("HEXCMYK").value = '000000FF';
+                document.getElementById("HEXCMYK").value = '00000000';
                 alert("'" + hexa + "' is not a valid hex format");
                 return false;
             }
 
             document.getElementById("HEXCMYK").value = hexa.toUpperCase();
-            document.getElementById("C").value = Math.round(chunks[0] / 255 * 100);
-            document.getElementById("M").value = Math.round(chunks[1] / 255 * 100);
-            document.getElementById("Y").value = Math.round(chunks[2] / 255 * 100);
-            document.getElementById("K").value = Math.round(chunks[3] / 255 * 100);
+            document.getElementById("C").value = Math.round(cmyk[0] / 255 * 100);
+            document.getElementById("M").value = Math.round(cmyk[1] / 255 * 100);
+            document.getElementById("Y").value = Math.round(cmyk[2] / 255 * 100);
+            document.getElementById("K").value = Math.round(cmyk[3] / 255 * 100);
             return true;
         }
 
@@ -469,7 +471,7 @@
 
         function calculate_hexrgb_to_decrgb() {
             var hexa = document.getElementById("HEXRGB").value;
-            var chunks = [];
+            var rgb = [];
             var tmp, i;
             if (hexa.length < 1) return false;
 
@@ -480,24 +482,25 @@
 
             if (hexa.length === 3) {
                 tmp = hexa.split("");
+                hexa = '';
                 for (i = 0; i < 3; i++) {
-                    chunks.push(parseInt(tmp[i] + "" + tmp[i], 16));
+                    rgb.push(parseInt(tmp[i] + "" + tmp[i], 16));
+                    hexa += tmp[i] + "" + tmp[i];
                 }
             } else if (hexa.length === 6) {
                 tmp = hexa.match(/.{2}/g);
                 for (i = 0; i < 3; i++) {
-                    chunks.push(parseInt(tmp[i], 16));
+                    rgb.push(parseInt(tmp[i], 16));
                 }
             } else {
-
                 document.getElementById("HEXRGB").value = '000000';
                 alert("'" + hexa + "' is not a valid hex format");
                 return false;
             }
 
-            document.getElementById("R").value = chunks[0];
-            document.getElementById("G").value = chunks[1];
-            document.getElementById("B").value = chunks[2];
+            document.getElementById("R").value = rgb[0];
+            document.getElementById("G").value = rgb[1];
+            document.getElementById("B").value = rgb[2];
             document.getElementById("HEXRGB").value = hexa.toUpperCase();
             set_representation(hexa);
             return true;
