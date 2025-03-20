@@ -9,3 +9,5 @@ Enter any value in one of the input fields and the corresponding other fields wi
 Try it life [here](https://zenziwerken.github.io/colorconverter/) or copy the html to your PC an use it offline.  
 
 Icon based on [tabler "palette"](https://tabler.io/icons/icon/palette).
+
+<img src="screenshot.webp" height="600">
